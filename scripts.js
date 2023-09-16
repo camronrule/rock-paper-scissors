@@ -36,17 +36,21 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
+function buttonClicked(e){
+    console.log(e);
+}
+
 function game() {
     let computerPoints, playerPoints;
-    for (let i = 0; i < 5; i++){
-        const playerSelection = prompt('Welcome to the game! Please choose between Rock, Paper, and Scissors.')
-        const gameResult = playRound(playerSelection, getComputerChoice());
 
-        if (gameResult.includes('lose')) computerPoints++;
-        else if (gameResult.includes('win')) playerPoints++;
+    const playerSelection = prompt('Welcome to the game! Please choose between Rock, Paper, and Scissors.')
+    const gameResult = playRound(playerSelection, getComputerChoice());
 
-        console.log(gameResult);
-    }
+    if (gameResult.includes('lose')) computerPoints++;
+    else if (gameResult.includes('win')) playerPoints++;
+
+    console.log(gameResult);
+
     if (playerPoints > computerPoints){
         console.log('Great job! You won!');
     }
@@ -54,3 +58,6 @@ function game() {
         console.log("Nice try! You'll get em next time.");
     }
 }
+
+let buttons = Array.from(document.querySelectorAll(".button"));
+buttons.forEach(button => button.addEventListener('click', buttonClicked));
