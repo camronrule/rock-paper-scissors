@@ -1,3 +1,7 @@
+let computerPoints = 0;
+let playerPoints = 0;
+
+
 
 //randomly returns either rock, paper, or scissors
 //as strings. 
@@ -36,28 +40,46 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-function buttonClicked(e){
-    console.log(e);
-}
-
-function game() {
-    let computerPoints, playerPoints;
-
-    const playerSelection = prompt('Welcome to the game! Please choose between Rock, Paper, and Scissors.')
-    const gameResult = playRound(playerSelection, getComputerChoice());
+function updateScore(gameResult) {
 
     if (gameResult.includes('lose')) computerPoints++;
     else if (gameResult.includes('win')) playerPoints++;
-
     console.log(gameResult);
-
-    if (playerPoints > computerPoints){
-        console.log('Great job! You won!');
-    }
-    else {
-        console.log("Nice try! You'll get em next time.");
-    }
 }
 
-let buttons = Array.from(document.querySelectorAll(".button"));
-buttons.forEach(button => button.addEventListener('click', buttonClicked));
+function gameOver(){
+    console.log('GAME OVER!');
+
+    if (playerPoints > computerPoints){ 
+        // you won!!!
+        console.log('WON');
+    }
+    else {
+        //you lost!!!
+        console.log('LOST');
+    }
+    
+}
+
+document.addEventListener('DOMContentLoaded', init, false);
+
+
+function init(){
+let buttons = document.querySelectorAll('.button');
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+
+            const img = button.querySelector("img");
+            playerSelection = img.alt;
+
+            const gameResult = playRound(playerSelection, getComputerChoice())
+            updateScore(gameResult);
+
+            if (playerPoints == 5 || computerPoints == 5){
+                gameOver();
+            }
+    })
+});
+
+}
+
