@@ -44,28 +44,35 @@ function updateScore(gameResult) {
 
     if (gameResult.includes('lose')) computerPoints++;
     else if (gameResult.includes('win')) playerPoints++;
-    console.log(gameResult);
+
+    document.querySelector('#playerScore').textContent = playerPoints;
+    document.querySelector('#computerScore').textContent = computerPoints;
 }
 
 function gameOver(){
-    console.log('GAME OVER!');
+
+    let gameOverText = '';
 
     if (playerPoints > computerPoints){ 
-        // you won!!!
-        console.log('WON');
+        gameOverText = "Congratulations! You won!"
     }
     else {
-        //you lost!!!
-        console.log('LOST');
+        gameOverText = "You lost, better luck next time."
     }
-    
+
+    document.querySelector('.scoreboard').classList.add('hidden');
+    document.querySelector('#gameOver').classList.remove('hidden');
+    document.querySelector('#gameOver').textContent = gameOverText;
+
 }
+
 
 document.addEventListener('DOMContentLoaded', init, false);
 
+const buttonListener = new AbortController();
 
 function init(){
-let buttons = document.querySelectorAll('.button');
+    let buttons = document.querySelectorAll('.button');
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
 
@@ -77,8 +84,11 @@ let buttons = document.querySelectorAll('.button');
 
             if (playerPoints == 5 || computerPoints == 5){
                 gameOver();
+                buttonListener.abort();
             }
-    })
+    },
+    {signal: buttonListener.signal})
+
 });
 
 }

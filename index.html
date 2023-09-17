@@ -5,20 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="scripts.js"></script>
-    <style src="style.css"></style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="button container">
-        <div class="button rock">
-            <img src="./img/istockphoto-882081240-170667a.jpg"/>
+    <div class="container">
+        <div class="button">
+            <img src="./img/istockphoto-882081240-170667a.jpg" alt="Rock"/>
         </div>
-        <div class="button paper">
-            <img src="./img/Paperball_2.jpeg"/>
+        <div class="button">
+            <img src="./img/Paperball_2.jpeg" alt="Paper"/>
         </div>
-        <div class="button scissors">
-            <img src="./img/Standard_household_scissors.jpg"/>
+        <div class="button">
+            <img src="./img/Standard_household_scissors.jpg" alt="Scissors"/>
         </div>
     </div>
+
+    <div class="scoreboard">
+        <div class="player score">
+            <div>Your score:</div>
+            <div id="playerScore">0</div>
+        </div>
+        <div class="computer score">
+            <div>Computer score:</div>
+            <div id="computerScore">0</div>
+        </div>
+    </div>
+
+    <div class="hidden" id="gameOver"></div>
     
 </body>
 </html>
